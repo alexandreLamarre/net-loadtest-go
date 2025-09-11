@@ -1,0 +1,22 @@
+name: CI
+on:
+  pull_request:
+    paths-ignore:
+      - "docs/**"
+      - "*.md"
+      - ".gitignore"
+      - "CODEOWNERS"
+      - "LICENSE"
+      - "Makefile"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v6
+        with:
+          go-version: ">=1.25.0"
+      - name: Build
+        run: make build
