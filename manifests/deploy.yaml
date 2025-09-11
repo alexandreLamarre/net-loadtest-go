@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: loadtest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadtest-go
+  namespace: loadtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadtest-go
+  template:
+    metadata:
+      labels:
+        app: loadtest-go
+    spec:
+      containers:
+      - name: loadtest-go
+        image: ghcr.io/alexandrelamarre/loadtest:v0.1.0
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadtest-go
+  namespace: loadtest
+spec:
+  selector:
+    app: loadtest-go
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP
