@@ -8,4 +8,4 @@ FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/loadtest-go .
 EXPOSE 8080
-CMD ["./loadtest-go", "server"]
+ENTRYPOINT ["./loadtest-go"]

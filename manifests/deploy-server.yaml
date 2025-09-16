@@ -20,7 +20,8 @@ spec:
     spec:
       containers:
       - name: loadtest-go
-        image: ghcr.io/alexandrelamarre/loadtest:v0.1.0
+        image: ghcr.io/alexandrelamarre/loadtest:v0.2.0
+        args: ["server"]
         ports:
         - containerPort: 8080
 

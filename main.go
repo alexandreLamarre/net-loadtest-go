@@ -51,7 +51,9 @@ func BuildClientCmd() *cobra.Command {
 				ConcurrentRequests: concurrency,
 				Delay:              delay,
 			})
-			client.runHttp(cmd.Context(), addr)
+			go client.do(cmd.Context(), addr)
+			go client.report(cmd.Context())
+			client.ServeMetrics("0.0.0.0:7777")
 			return nil
 		},
 	}

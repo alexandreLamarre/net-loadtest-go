@@ -1,0 +1,7 @@
+attributes:
+  http.status.code:
+    type: int64
+    description : the HTTP response status code
+  http.error.type:
+    type: string
+    description : the type of error encountered during an HTTP request

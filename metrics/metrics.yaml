@@ -1,0 +1,9 @@
+metrics:
+  loadtest.client.http.result:
+    short: metric recording each client response status
+    counter:
+      value_type: int64
+    attributes:
+      - http.status.code
+    optional_attributes:
+      - http.error.type
